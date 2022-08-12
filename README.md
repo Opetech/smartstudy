@@ -1,0 +1,2 @@
+# smartstudy
+Techwiz project
