@@ -3,6 +3,23 @@ package com.techwiz.smartstudy.model;
 public class User {
     private int UserId;
     private String firstname;
+    private String lastname;
+    private String contact;
+    private String email;
+    private String password;
+    private String category;
+
+    public User() {
+    }
+
+    public User(String firstname, String lastname, String contact, String email, String password, String category) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.contact = contact;
+        this.email = email;
+        this.password = password;
+        this.category = category;
+    }
 
     public int getUserId() {
         return UserId;
@@ -59,10 +76,4 @@ public class User {
     public void setCategory(String category) {
         this.category = category;
     }
-
-    private String lastname;
-    private String contact;
-    private String email;
-    private String password;
-    private String category;
 }

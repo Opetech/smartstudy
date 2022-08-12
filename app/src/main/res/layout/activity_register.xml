@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Register">
+    tools:context=".RegisterActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -107,7 +107,7 @@
                 android:background="@drawable/blue_border_rounded_cornwe">
 
                 <EditText
-                    android:id="@+id/email"
+                    android:id="@+id/emailAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/email_icon"
@@ -205,42 +205,42 @@
                     android:src="@drawable/password1"/>
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="52dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="52dp"
-                android:background="@drawable/blue_border_rounded_cornwe">
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginLeft="52dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginRight="52dp"-->
+<!--                android:background="@drawable/blue_border_rounded_cornwe">-->
 
-                <EditText
-                    android:id="@+id/password2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/password2_icon"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/poppins_regular"
-                    android:hint="Confirm Password"
-                    android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:maxLength="15"
-                    android:paddingLeft="17dp"
-                    android:paddingTop="15dp"
-                    android:paddingBottom="15dp"
-                    android:textCursorDrawable="@drawable/cursor_color"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    android:textSize="13sp"/>
+<!--                <EditText-->
+<!--                    android:id="@+id/password2"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_toRightOf="@+id/password2_icon"-->
+<!--                    android:background="@android:color/transparent"-->
+<!--                    android:fontFamily="@font/poppins_regular"-->
+<!--                    android:hint="Confirm Password"-->
+<!--                    android:inputType="textPassword"-->
+<!--                    android:maxLength="15"-->
+<!--                    android:maxLines="1"-->
+<!--                    android:paddingLeft="17dp"-->
+<!--                    android:paddingTop="15dp"-->
+<!--                    android:paddingBottom="15dp"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textColorHint="@color/black"-->
+<!--                    android:textCursorDrawable="@drawable/cursor_color"-->
+<!--                    android:textSize="13sp" />-->
 
-                <ImageView
-                    android:id="@+id/password2_icon"
-                    android:layout_width="14.7dp"
-                    android:layout_height="10.3dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="17dp"
-                    android:src="@drawable/password1"/>
+<!--                <ImageView-->
+<!--                    android:id="@+id/password2_icon"-->
+<!--                    android:layout_width="14.7dp"-->
+<!--                    android:layout_height="10.3dp"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_marginLeft="17dp"-->
+<!--                    android:src="@drawable/password1"/>-->
 
-            </RelativeLayout>
+<!--            </RelativeLayout>-->
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -252,7 +252,7 @@
                     android:layout_marginLeft="140dp"
                     android:layout_marginTop="18dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Gender"
+                    android:text="Category"
                     android:textColor="@color/green1"
                     android:textSize="15dp"
                     android:textStyle="bold" />
@@ -264,34 +264,47 @@
                 android:layout_marginTop="5dp">
 
                 <RadioGroup
-                    android:id="@+id/RGroup"
+                    android:id="@+id/userCategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
 
                     <RadioButton
-                        android:id="@+id/radioMale"
+                        android:id="@+id/student"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="70dp"
                         android:buttonTint="@color/green1"
-                        android:text="Male"
-                        android:textColor="@color/green1" />
+                        android:text="Student"
+                        android:textColor="@color/green1"
+                        android:onClick="onRadioButtonClicked"
+                        />
 
                     <RadioButton
-                        android:id="@+id/radioFemale"
+                        android:id="@+id/teacher"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="80dp"
                         android:buttonTint="@color/green1"
-                        android:text="Female"
-                        android:textColor="@color/green1" />
+                        android:text="Teacher"
+                        android:textColor="@color/green1"
+                        android:onClick="onRadioButtonClicked"
+                        />
 
+                    <RadioButton
+                        android:id="@+id/parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="80dp"
+                        android:buttonTint="@color/green1"
+                        android:text="Parent"
+                        android:textColor="@color/green1"
+                        android:onClick="onRadioButtonClicked"
+                        />
                 </RadioGroup>
 
             </RelativeLayout>
-
 
 
             <TextView
