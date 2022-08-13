@@ -20,6 +20,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_PARENT_STUDENT = "parent_student";
     private static final String TABLE_REVISIONS = "revisions";
     private static final String TABLE_TESTS = "tests";
+    private static final String TABLE_RESOURCES = "resources";
+
     private static final String COLUMN_PRIMARY_ID = "id";
 
     // User Table Columns names
@@ -35,17 +37,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_STUDENT_CLASS = "class";
     private static final String COLUMN_STUDENT_ENROLLMENT_DATE = "enrollment_date";
 
-    // Test Table Columns names
+    // Revision Table Columns names
     private static final String COLUMN_REVISION_NAME = "name";
     private static final String COLUMN_REVISION_DATE = "revision_date";
     private static final String COLUMN_REVISION_TIME = "revision_time";
 
     // Test Table Columns names
     private static final String COLUMN_TEST_NAME = "name";
+    private static final String COLUMN_TEST_STATUS = "is_taken";
 
     // Parent Student Table Columns names
     private static final String COLUMN_PARENT_ID = "parent_id";
     private static final String COLUMN_STUDENT_ID = "student_id";
+
+    // Resources Table Columns names
+    private static final String COLUMN_RESOURCE_TITLE = "title";
+    private static final String COLUMN_RESOURCE_TYPE = "type";
+    private static final String COLUMN_RESOURCE_LINK = "link";
 
     // Score Details Table Columns names
     private static final String COLUMN_SCORE_TEST_ID = "test_id";
@@ -72,9 +80,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             COLUMN_REVISION_DATE + " TEXT, " +
             COLUMN_REVISION_TIME + " TEXT " + ")";
 
+    // create RESOURCES table sql query
+    private String CREATE_RESOURCES_TABLE = "CREATE TABLE " + TABLE_RESOURCES + "("
+            + COLUMN_PRIMARY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            COLUMN_RESOURCE_TITLE + " VARCHAR (255), " +
+            COLUMN_RESOURCE_TYPE + " VARCHAR (255), " +
+            COLUMN_RESOURCE_LINK + " TEXT " + ")";
+
     // create test table sql query
     private String CREATE_TEST_TABLE = "CREATE TABLE " + TABLE_TESTS + "("
-            + COLUMN_PRIMARY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_TEST_NAME + " TEXT " + ")";
+            + COLUMN_PRIMARY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_TEST_NAME + " TEXT, " + COLUMN_TEST_STATUS + " INTEGER " + ")";
 
     // create parent student table sql query
     private String CREATE_PARENT_STUDENT_TABLE = "CREATE TABLE " + TABLE_PARENT_STUDENT + "("
@@ -97,6 +112,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String DROP_USER_TABLE = "DROP TABLE IF EXISTS " + TABLE_USER;
     private String DROP_STUDENT_DATA_TABLE = "DROP TABLE IF EXISTS " + TABLE_STUDENT_DATA;
     private String DROP_REVISION_TABLE = "DROP TABLE IF EXISTS " + TABLE_REVISIONS;
+    private String DROP_RESOURCES_TABLE = "DROP TABLE IF EXISTS " + TABLE_RESOURCES;
     private String DROP_TEST_TABLE = "DROP TABLE IF EXISTS " + TABLE_TESTS;
     private String DROP_SCORE_DETAILS_TABLE = "DROP TABLE IF EXISTS " + TABLE_SCORE_DETAILS;
     private String DROP_PARENT_STUDENT_TABLE = "DROP TABLE IF EXISTS " + TABLE_PARENT_STUDENT;
@@ -115,6 +131,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_USER_TABLE);
         db.execSQL(CREATE_STUDENT_TABLE);
         db.execSQL(CREATE_REVISIONS_TABLE);
+        db.execSQL(CREATE_RESOURCES_TABLE);
         db.execSQL(CREATE_TEST_TABLE);
         db.execSQL(CREATE_SCORE_DETAILS_TABLE);
         db.execSQL(CREATE_PARENT_STUDENT_TABLE);
@@ -126,6 +143,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(DROP_USER_TABLE);
         db.execSQL(DROP_STUDENT_DATA_TABLE);
         db.execSQL(DROP_REVISION_TABLE);
+        db.execSQL(DROP_RESOURCES_TABLE);
         db.execSQL(DROP_TEST_TABLE);
         db.execSQL(DROP_SCORE_DETAILS_TABLE);
         db.execSQL(DROP_PARENT_STUDENT_TABLE);
@@ -223,7 +241,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 null);                      //The sort order
         if (cursor.moveToFirst()) {
             //Update user entity
-//            User user = new User(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_FIRST_NAME)));
+            User user = new User();
+            user.setUserId(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_PRIMARY_ID)));
+            user.setFirstname(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_FIRST_NAME)));
             cursor.close();
             db.close();
             return true;

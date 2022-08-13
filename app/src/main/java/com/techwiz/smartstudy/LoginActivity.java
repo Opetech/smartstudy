@@ -14,7 +14,7 @@ import com.techwiz.smartstudy.model.User;
 import com.techwiz.smartstudy.sql.DatabaseHelper;
 import com.techwiz.smartstudy.validations.InputValidation;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity {
     private final AppCompatActivity activity = LoginActivity.this;
     EditText email, password;
     TextView login;
@@ -28,7 +28,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         initViewVariables();
         initObjects();
-        initListeners();
+
+        login.setOnClickListener( view -> {
+            handleLoginAction();
+        });
     }
 
     private void initViewVariables() {
@@ -43,38 +46,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         user = new User();
     }
 
-    private void initListeners() {
-        login.setOnClickListener(this);
-    }
-
-    /**
-     * This implemented method is to listen the click on view
-     *
-     * @param v
-     */
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.register:
-                startActivity(new Intent(activity, RegisterActivity.class));
-                break;
-            case R.id.login:
-                handleLoginAction();
-                break;
-        }
-    }
-
     private void handleLoginAction() {
-            if (!!inputValidation.isEmpty(email)) {
+            if (inputValidation.isEmpty(email)) {
                 email.setError("Email cannot be empty!");
-            } else if (!inputValidation.isEmpty(password)) {
+            } else if (inputValidation.isEmpty(password)) {
                 password.setError("Password cannot be empty");
             } else {
                 try {
                     Object user = databaseHelper.checkUser(email.getText().toString(), password.getText().toString());
                     if (user instanceof User) {
                         User userDetails = (User) user;
-                        Intent intent = new Intent(this, DashboardActivity.class);
+                        Intent intent = new Intent(activity, DashboardActivity.class);
                         intent.putExtra("firstname", userDetails.getFirstname());
                         startActivity(intent);
                     } else {
