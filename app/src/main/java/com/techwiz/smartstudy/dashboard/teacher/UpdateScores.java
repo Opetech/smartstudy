@@ -110,15 +110,13 @@ public class UpdateScores extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String from;
-        if (view.getId() == R.id.testsDropdown) {
-            selectedTest = testsId.get(position);
-            from = "Tests";
-        } else {
-            selectedUser = usersId.get(position);
-            from = "Users";
+        if (parent.getSelectedView().getId() == R.id.testsDropdown) {
+            selectedTest = testsId.get(parent.getSelectedItemPosition());
+        } else if(parent.getSelectedView().getId() == R.id.usersDropdown) {
+            selectedUser = usersId.get(parent.getSelectedItemPosition());
         }
 
-        Log.println(Log.INFO, "Selected: ", "" + from);
+        Log.println(Log.INFO, "Selected: ", "" + parent.getSelectedView().getId());
         // Showing selected spinner item
         Toast.makeText(parent.getContext(), "Selected: " + view.getId(), Toast.LENGTH_LONG).show();
     }
