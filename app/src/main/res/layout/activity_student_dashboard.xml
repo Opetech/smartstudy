@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".dashboard.student.StudentDashboard"
+    android:background="@color/gray">
+    <RelativeLayout
+        android:id="@+id/headerBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/bg_color">
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginBottom="10dp"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/welcomeMessage"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/headerBar"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+    <RelativeLayout
+        android:id="@+id/component"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/welcomeMessage"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20sp"
+        android:background="@color/gray">
+        <RelativeLayout
+            android:id="@+id/Iframe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/marks"
+                android:layout_width="match_parent"
+                android:layout_height="77dp"
+                android:layout_marginTop="10sp"
+                android:background="@drawable/stdshape">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:drawableTop="@drawable/ic_baseline_school_24"
+                    android:text="Study Resources"
+                    android:textColor="@color/gray"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/AcademicBtn"
+                android:layout_width="match_parent"
+                android:layout_height="77dp"
+                android:layout_below="@+id/marks"
+                android:layout_marginTop="21sp"
+                android:background="@drawable/accshape">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:drawableTop="@drawable/ic_baseline_school_24"
+                    android:text="Academic Progress"
+                    android:textColor="@color/gray"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ResourceBtn"
+                android:layout_width="match_parent"
+                android:layout_height="77dp"
+                android:layout_below="@id/AcademicBtn"
+                android:layout_marginTop="21sp"
+                android:background="@drawable/studyresourcesbg">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:drawableTop="@drawable/ic_baseline_event_note_24"
+                    android:text="Study Resources"
+                    android:textColor="@color/gray"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/emailbox"
+                android:layout_width="match_parent"
+                android:layout_height="77dp"
+                android:layout_below="@id/ResourceBtn"
+                android:layout_marginTop="21sp"
+                android:background="@drawable/revisionclasses">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:drawableTop="@drawable/ic_baseline_mark_email_unread_24"
+                    android:text="Revision Classes"
+                    android:textColor="@color/gray"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+<!--            <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                android:id="@+id/settings"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="77dp"-->
+<!--                android:layout_below="@id/emailbox"-->
+<!--                android:layout_marginTop="21sp"-->
+<!--                android:background="@drawable/sttshape">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:drawableTop="@drawable/ic_baseline_settings_24"-->
+<!--                    android:text="Revision Classes"-->
+<!--                    android:textColor="@color/gray"-->
+<!--                    android:textSize="15sp"-->
+<!--                    android:textStyle="normal" />-->
+<!--            </androidx.appcompat.widget.LinearLayoutCompat>-->
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

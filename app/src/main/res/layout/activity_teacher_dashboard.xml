@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DashboardActivity"
+    tools:context=".dashboard.teacher.TeacherDashboard"
     android:background="@color/gray">
     <RelativeLayout
         android:id="@+id/headerBar"
@@ -13,6 +13,7 @@
         android:layout_height="50dp"
         android:background="@color/bg_color">
         <TextView
+            android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -26,7 +27,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/welcomeMessg"
+        android:id="@+id/welcomeMessage"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_below="@id/headerBar"
@@ -40,7 +41,7 @@
         android:id="@+id/component"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_below="@+id/welcomeMessg"
+        android:layout_below="@+id/welcomeMessage"
         android:layout_marginLeft="20sp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="20sp"
@@ -52,7 +53,7 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/marks"
+                android:id="@+id/updateMarks"
                 android:layout_width="match_parent"
                 android:layout_height="77dp"
                 android:layout_marginTop="10sp"
@@ -64,17 +65,17 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:drawableTop="@drawable/ic_baseline_school_24"
-                    android:text="Study Resources"
+                    android:text="Update Student Marks"
                     android:textColor="@color/gray"
                     android:textSize="15sp"
                     android:textStyle="normal" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/AcademicBtn"
+                android:id="@+id/updateAcademicProgress"
                 android:layout_width="match_parent"
                 android:layout_height="77dp"
-                android:layout_below="@+id/marks"
+                android:layout_below="@+id/updateMarks"
                 android:layout_marginTop="21sp"
                 android:background="@drawable/accshape">
 
@@ -91,10 +92,10 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/ResourceBtn"
+                android:id="@+id/addStudyResource"
                 android:layout_width="match_parent"
                 android:layout_height="77dp"
-                android:layout_below="@id/AcademicBtn"
+                android:layout_below="@id/updateAcademicProgress"
                 android:layout_marginTop="21sp"
                 android:background="@drawable/studyresourcesbg">
 
@@ -104,7 +105,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:drawableTop="@drawable/ic_baseline_event_note_24"
-                    android:text="Study Resources"
+                    android:text="Add Study Resources"
                     android:textColor="@color/gray"
                     android:textSize="15sp"
                     android:textStyle="normal" />
@@ -112,10 +113,10 @@
 
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/emailbox"
+                android:id="@+id/addRevision"
                 android:layout_width="match_parent"
                 android:layout_height="77dp"
-                android:layout_below="@id/ResourceBtn"
+                android:layout_below="@id/addStudyResource"
                 android:layout_marginTop="21sp"
                 android:background="@drawable/revisionclasses">
 
@@ -131,25 +132,6 @@
                     android:textStyle="normal" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/settings"
-                android:layout_width="match_parent"
-                android:layout_height="77dp"
-                android:layout_below="@id/emailbox"
-                android:layout_marginTop="21sp"
-                android:background="@drawable/sttshape">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:drawableTop="@drawable/ic_baseline_settings_24"
-                    android:text="Revision Classes"
-                    android:textColor="@color/gray"
-                    android:textSize="15sp"
-                    android:textStyle="normal" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

@@ -1,14 +1,15 @@
-package com.techwiz.smartstudy;
+package com.techwiz.smartstudy.dashboard.student;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import com.techwiz.smartstudy.R;
 
-public class DashboardActivity extends AppCompatActivity {
+public class AcademicStatus extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_academic_status);
     }
 }

@@ -11,4 +11,6 @@
     <color name="bg_color">#3cae72</color>
     <color name="yellow">#FFAB00</color>
     <color name="gray">#EAEAEA</color>
+    <color name="FormColore">#C7C7C7</color>
+    <color name="dark_green">#03806F</color>
 </resources>

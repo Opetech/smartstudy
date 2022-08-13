@@ -10,19 +10,19 @@ import com.techwiz.smartstudy.model.User;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     // Database Version
-    private static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 2;
     // Database Name
     private static final String DATABASE_NAME = "SmartStudy.db";
     // User table name
     private static final String TABLE_USER = "users";
     private static final String TABLE_STUDENT_DATA = "students";
-    private static final String TABLE_SCORE_DETAILS = "score_details";
+    public static final String TABLE_SCORE_DETAILS = "score_details";
     private static final String TABLE_PARENT_STUDENT = "parent_student";
-    private static final String TABLE_REVISIONS = "revisions";
-    private static final String TABLE_TESTS = "tests";
-    private static final String TABLE_RESOURCES = "resources";
+    public static final String TABLE_REVISIONS = "revisions";
+    public static final String TABLE_TESTS = "tests";
+    public static final String TABLE_RESOURCES = "resources";
 
-    private static final String COLUMN_PRIMARY_ID = "id";
+    public static final String COLUMN_PRIMARY_ID = "id";
 
     // User Table Columns names
     private static final String COLUMN_FIRST_NAME = "firstname";
@@ -38,29 +38,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_STUDENT_ENROLLMENT_DATE = "enrollment_date";
 
     // Revision Table Columns names
-    private static final String COLUMN_REVISION_NAME = "name";
-    private static final String COLUMN_REVISION_DATE = "revision_date";
-    private static final String COLUMN_REVISION_TIME = "revision_time";
+    public static final String COLUMN_REVISION_NAME = "name";
+    public static final String COLUMN_REVISION_DATE = "revision_date";
+    public static final String COLUMN_REVISION_TIME = "revision_time";
 
     // Test Table Columns names
-    private static final String COLUMN_TEST_NAME = "name";
-    private static final String COLUMN_TEST_STATUS = "is_taken";
+    public static final String COLUMN_TEST_NAME = "name";
+    public static final String COLUMN_TEST_STATUS = "is_taken";
 
     // Parent Student Table Columns names
     private static final String COLUMN_PARENT_ID = "parent_id";
     private static final String COLUMN_STUDENT_ID = "student_id";
 
     // Resources Table Columns names
-    private static final String COLUMN_RESOURCE_TITLE = "title";
-    private static final String COLUMN_RESOURCE_TYPE = "type";
-    private static final String COLUMN_RESOURCE_LINK = "link";
+    public static final String COLUMN_RESOURCE_TITLE = "title";
+    public static final String COLUMN_RESOURCE_TYPE = "type";
+    public static final String COLUMN_RESOURCE_LINK = "link";
 
     // Score Details Table Columns names
-    private static final String COLUMN_SCORE_TEST_ID = "test_id";
-    private static final String COLUMN_SCORE_USER_ID = "user_id";
-    private static final String COLUMN_SCORE_DESCRIPTION = "description";
-    private static final String COLUMN_SCORE_DATE = "date";
-    private static final String COLUMN_SCORE_RECEIVED = "score_received";
+    public static final String COLUMN_SCORE_TEST_ID = "test_id";
+    public static final String COLUMN_SCORE_USER_ID = "user_id";
+    public static final String COLUMN_SCORE_DESCRIPTION = "description";
+    public static final String COLUMN_SCORE_DATE = "date";
+    public static final String COLUMN_SCORE_RECEIVED = "score_received";
 
     // create users table sql query
     private String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
@@ -219,7 +219,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // array of columns to fetch
         String[] columns = {
                 COLUMN_PRIMARY_ID,
-                COLUMN_FIRST_NAME
+                COLUMN_FIRST_NAME,
+                COLUMN_LAST_NAME,
+                COLUMN_CATEGORY
         };
         SQLiteDatabase db = this.getReadableDatabase();
         // selection criteria
@@ -233,20 +235,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
          * SELECT user_id FROM user WHERE user_email = 'jack@androidtutorialshub.com' AND user_password = 'qwerty';
          */
         Cursor cursor = db.query(TABLE_USER, //Table to query
-                columns,                    //columns to return
-                selection,                  //columns for the WHERE clause
-                selectionArgs,              //The values for the WHERE clause
-                null,                       //group the rows
-                null,                       //filter by row groups
-                null);                      //The sort order
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null);
         if (cursor.moveToFirst()) {
             //Update user entity
             User user = new User();
             user.setUserId(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_PRIMARY_ID)));
             user.setFirstname(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_FIRST_NAME)));
+            user.setLastname(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_LAST_NAME)));
+            user.setCategory(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CATEGORY)));
             cursor.close();
             db.close();
-            return true;
+            return user;
         }
         return false;
     }

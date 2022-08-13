@@ -11,15 +11,16 @@ import com.techwiz.smartstudy.model.Resources;
 import com.techwiz.smartstudy.model.Revision;
 import com.techwiz.smartstudy.model.ScoreDetails;
 import com.techwiz.smartstudy.model.Test;
+import com.techwiz.smartstudy.sql.DatabaseHelper;
 
-public class TeacherService extends SQLiteOpenHelper {
-    private static final String TABLE_REVISIONS = "revisions";
-    private static final String TABLE_RESOURCES = "resources";
-    private static final String TABLE_TESTS = "tests";
-    private static final String TABLE_SCORE_DETAILS = "score_details";
-
-    public TeacherService(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+public class TeacherService extends DatabaseHelper {
+    /**
+     * Constructor
+     *
+     * @param context
+     */
+    public TeacherService(Context context) {
+        super(context);
     }
 
     @Override

@@ -14,7 +14,34 @@
         android:theme="@style/Theme.SmartStudy"
         tools:targetApi="31">
         <activity
-            android:name=".DashboardActivity"
+            android:name=".dashboard.teacher.AddRevisionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".dashboard.ParentDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".dashboard.teacher.TeacherDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".dashboard.student.AcademicStatus"
+            android:exported="false" />
+        <activity
+            android:name=".dashboard.student.TestScores"
+            android:exported="false" />
+        <activity
+            android:name=".dashboard.student.StudyResource"
+            android:exported="false" />
+        <activity
+            android:name=".dashboard.teacher.UpdateScores"
+            android:exported="false" />
+        <activity
+            android:name=".dashboard.teacher.UpdateAcademicResource"
+            android:exported="false" />
+        <activity
+            android:name=".dashboard.teacher.UpdateAcademicProgress"
+            android:exported="false" />
+        <activity
+            android:name=".dashboard.student.StudentDashboard"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
