@@ -2,6 +2,7 @@ package com.techwiz.smartstudy.dashboard.teacher;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -49,27 +50,22 @@ public class UpdateScores extends AppCompatActivity implements AdapterView.OnIte
     }
 
     private void createSelectDropdownMenu() {
-        // Tests Drop down elements
-        tests = new ArrayList<String>();
-        tests.add("Item 1");
-        tests.add("Item 2");
-        tests.add("Item 3");
-
+        teacherService = new TeacherService(activity);
+        //Fetch available tests
+        tests = teacherService.getAllTests();
+        //Assign ids for tests, to get selected test id from dropdown
         testsId = new ArrayList<>();
-        testsId.add(1);
-        testsId.add(2);
-        testsId.add(3);
+        for (int i = 1; i <= tests.size(); i++) {
+               testsId.add(i);
+        }
 
-        // User Drop down elements
-        users = new ArrayList<String>();
-        users.add("User 1");
-        users.add("User 2");
-        users.add("User 3");
-
+        //Fetch all users
+        users = teacherService.getAllStudents();
+        //Assign ids for users, to get selected test id from dropdown
         usersId = new ArrayList<>();
-        usersId.add(1);
-        usersId.add(2);
-        usersId.add(3);
+        for (int i = 1; i <= tests.size(); i++) {
+            usersId.add(i);
+        }
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tests);
@@ -105,19 +101,18 @@ public class UpdateScores extends AppCompatActivity implements AdapterView.OnIte
         dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         ScoreDetails scoreDetails = new ScoreDetails(selectedTest, selectedUser, scoreDescription.getText().toString(), dateFormat.format(new Date()), Integer.parseInt(score.getText().toString()));
         teacherService.updateScore(scoreDetails);
+        Toast.makeText(activity, "Test Score Updated Successfully", Toast.LENGTH_LONG).show();
+        startActivity(new Intent(activity, TeacherDashboard.class));
+        finish();
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (parent == testsDropdown) {
             selectedTest = testsId.get(parent.getSelectedItemPosition());
-        } else if(parent == usersDropdown) {
+        } else if (parent == usersDropdown) {
             selectedUser = usersId.get(parent.getSelectedItemPosition());
         }
-
-        Log.println(Log.INFO, "Selected: ", "" + selectedTest);
-        // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + view.getId(), Toast.LENGTH_LONG).show();
     }
 
     @Override

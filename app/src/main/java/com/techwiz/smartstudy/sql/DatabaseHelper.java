@@ -10,14 +10,13 @@ import com.techwiz.smartstudy.model.User;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     // Database Version
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 1;
     // Database Name
     private static final String DATABASE_NAME = "SmartStudy.db";
     // User table name
     private static final String TABLE_USER = "users";
     private static final String TABLE_STUDENT_DATA = "students";
     public static final String TABLE_SCORE_DETAILS = "score_details";
-    private static final String TABLE_PARENT_STUDENT = "parent_student";
     public static final String TABLE_REVISIONS = "revisions";
     public static final String TABLE_TESTS = "tests";
     public static final String TABLE_RESOURCES = "resources";
@@ -25,12 +24,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_PRIMARY_ID = "id";
 
     // User Table Columns names
-    private static final String COLUMN_FIRST_NAME = "firstname";
-    private static final String COLUMN_LAST_NAME = "lastname";
-    private static final String COLUMN_EMAIL = "email";
-    private static final String COLUMN_CONTACT = "contact";
-    private static final String COLUMN_PASSWORD = "password";
-    private static final String COLUMN_CATEGORY = "category";
+    public static final String COLUMN_FIRST_NAME = "firstname";
+    public static final String COLUMN_LAST_NAME = "lastname";
+    public static final String COLUMN_EMAIL = "email";
+    public static final String COLUMN_CONTACT = "contact";
+    public static final String COLUMN_PASSWORD = "password";
+    public static final String COLUMN_CATEGORY = "category";
 
     // Students Table Columns names
     private static final String COLUMN_STUDENT_USER_ID = "user_id";
@@ -46,10 +45,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_TEST_NAME = "name";
     public static final String COLUMN_TEST_STATUS = "is_taken";
 
-    // Parent Student Table Columns names
-    private static final String COLUMN_PARENT_ID = "parent_id";
-    private static final String COLUMN_STUDENT_ID = "student_id";
-
     // Resources Table Columns names
     public static final String COLUMN_RESOURCE_TITLE = "title";
     public static final String COLUMN_RESOURCE_LINK = "link";
@@ -59,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_SCORE_USER_ID = "user_id";
     public static final String COLUMN_SCORE_DESCRIPTION = "description";
     public static final String COLUMN_SCORE_DATE = "date";
-    public static final String COLUMN_SCORE_RECEIVED = "score_received";
+    public static final String COLUMN_SCORE_RECEIVED = "score";
 
     // create users table sql query
     private String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
@@ -89,24 +84,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String CREATE_TEST_TABLE = "CREATE TABLE " + TABLE_TESTS + "("
             + COLUMN_PRIMARY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_TEST_NAME + " TEXT, " + COLUMN_TEST_STATUS + " INTEGER " + ")";
 
-    // create parent student table sql query
-    private String CREATE_PARENT_STUDENT_TABLE = "CREATE TABLE " + TABLE_PARENT_STUDENT + "("
-            + COLUMN_PRIMARY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_PARENT_ID + " INTEGER," + COLUMN_STUDENT_ID + " INTEGER,"
-            + " FOREIGN KEY (" + COLUMN_PARENT_ID + ") REFERENCES "
-            + TABLE_USER + "(" + COLUMN_PRIMARY_ID + "),"
-            + " FOREIGN KEY (" + COLUMN_STUDENT_ID + ") REFERENCES "
-            + TABLE_USER + "(" + COLUMN_PRIMARY_ID + ")" + ")";
-
     // create score details table sql query
     private String CREATE_SCORE_DETAILS_TABLE = "CREATE TABLE " + TABLE_SCORE_DETAILS + "("
-            + COLUMN_PRIMARY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"  + COLUMN_SCORE_TEST_ID
+            + COLUMN_PRIMARY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_SCORE_TEST_ID
             + " INTEGER," + COLUMN_SCORE_USER_ID + " INTEGER," + COLUMN_SCORE_DESCRIPTION + " TEXT,"
-            + COLUMN_SCORE_DATE + "TEXT" + COLUMN_SCORE_RECEIVED + " INTEGER, "
+            + COLUMN_SCORE_DATE + " TEXT," + COLUMN_SCORE_RECEIVED + " INTEGER, "
             + " FOREIGN KEY (" + COLUMN_SCORE_TEST_ID + ") REFERENCES " + TABLE_TESTS + "(" + COLUMN_PRIMARY_ID + "),"
             + " FOREIGN KEY (" + COLUMN_SCORE_USER_ID + ") REFERENCES " + TABLE_USER + "(" + COLUMN_PRIMARY_ID + ")" + ")";
 
     //Seed tests table with data
-    private final String SEED_TESTS_TABLE = "INSERT INTO " + TABLE_TESTS + "(" + COLUMN_TEST_NAME + COLUMN_TEST_STATUS + ")" + "VALUES('English Language', 1), ('Computer Science', 1),('Mathematics', 0),('Biology', 1),('Chemistry', 0),('Project Management', 1),('Physics', 0)";
+    private final String SEED_TESTS_TABLE = "INSERT INTO " + TABLE_TESTS + "(" + COLUMN_TEST_NAME + "," + COLUMN_TEST_STATUS + ")" + "VALUES('English Language', 1), ('Computer Science', 1),('Mathematics', 0),('Biology', 1),('Chemistry', 0),('Project Management', 1),('Physics', 0)";
 
 
     // drop table sql query
@@ -116,7 +103,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String DROP_RESOURCES_TABLE = "DROP TABLE IF EXISTS " + TABLE_RESOURCES;
     private String DROP_TEST_TABLE = "DROP TABLE IF EXISTS " + TABLE_TESTS;
     private String DROP_SCORE_DETAILS_TABLE = "DROP TABLE IF EXISTS " + TABLE_SCORE_DETAILS;
-    private String DROP_PARENT_STUDENT_TABLE = "DROP TABLE IF EXISTS " + TABLE_PARENT_STUDENT;
 
     /**
      * Constructor
@@ -135,7 +121,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_RESOURCES_TABLE);
         db.execSQL(CREATE_TEST_TABLE);
         db.execSQL(CREATE_SCORE_DETAILS_TABLE);
-        db.execSQL(CREATE_PARENT_STUDENT_TABLE);
         db.execSQL(SEED_TESTS_TABLE);
     }
 
@@ -148,7 +133,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(DROP_RESOURCES_TABLE);
         db.execSQL(DROP_TEST_TABLE);
         db.execSQL(DROP_SCORE_DETAILS_TABLE);
-        db.execSQL(DROP_PARENT_STUDENT_TABLE);
         // Create tables again
         onCreate(db);
     }

@@ -51,7 +51,6 @@ public class UpdateAcademicResource extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(activity, "Something went wrong", Toast.LENGTH_LONG).show();
         }
-
     }
 
 

@@ -2,6 +2,7 @@ package com.techwiz.smartstudy.services;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -12,6 +13,9 @@ import com.techwiz.smartstudy.model.Revision;
 import com.techwiz.smartstudy.model.ScoreDetails;
 import com.techwiz.smartstudy.model.Test;
 import com.techwiz.smartstudy.sql.DatabaseHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TeacherService extends DatabaseHelper {
     /**
@@ -38,7 +42,7 @@ public class TeacherService extends DatabaseHelper {
         ContentValues values = new ContentValues();
         values.put("test_id", scoreDetails.getTestId());
         values.put("user_id", scoreDetails.getUserId());
-        values.put("score_received", scoreDetails.getScore());
+        values.put("score", scoreDetails.getScore());
         values.put("description", scoreDetails.getDescription());
         values.put("date", scoreDetails.getDate());
         db.insert(TABLE_SCORE_DETAILS, null, values);
@@ -70,5 +74,37 @@ public class TeacherService extends DatabaseHelper {
         values.put("time", revision.getTime());
         db.insert(TABLE_REVISIONS, null, values);
         db.close();
+    }
+
+    public List<String> getAllTests() {
+        List<String> tests = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT name FROM tests", null);
+        if (cursor.moveToFirst()) {
+            do {
+                tests.add(cursor.getString(cursor.getColumnIndex(COLUMN_TEST_NAME)));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return tests;
+    }
+
+    public List<String> getAllStudents() {
+        List<String> users = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT firstname FROM users WHERE category = 'student'", null);
+        if (cursor.moveToFirst()) {
+            do {
+                users.add(cursor.getString(cursor.getColumnIndex(COLUMN_FIRST_NAME)));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return users;
     }
 }
