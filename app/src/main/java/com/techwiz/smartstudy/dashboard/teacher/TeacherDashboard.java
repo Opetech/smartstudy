@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.techwiz.smartstudy.R;
+import com.techwiz.smartstudy.helper.SharedPreferenceHelper;
 
 public class TeacherDashboard extends AppCompatActivity {
     private final AppCompatActivity activity = TeacherDashboard.this;
     private TextView username, welcomeMessage;
     private LinearLayoutCompat updateMarks, updateAcademicProgress, addStudyResource, addRevision;
+    private SharedPreferenceHelper sharedPreferenceHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,9 +49,8 @@ public class TeacherDashboard extends AppCompatActivity {
         });
     }
 
-
     private void updateUserInfo() {
-        username.setText("Hi, " + getIntent().getStringExtra("firstname"));
-        welcomeMessage.setText("Welcome, " + getIntent().getStringExtra("firstname") + " " + getIntent().getStringExtra("lastname"));
+        sharedPreferenceHelper = new SharedPreferenceHelper(activity);
+        welcomeMessage.setText("Welcome, " + sharedPreferenceHelper.userFullName());
     }
 }

@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.techwiz.smartstudy.dashboard.ParentDashboard;
 import com.techwiz.smartstudy.dashboard.student.StudentDashboard;
 import com.techwiz.smartstudy.dashboard.teacher.TeacherDashboard;
+import com.techwiz.smartstudy.helper.SharedPreferenceHelper;
 import com.techwiz.smartstudy.model.User;
 import com.techwiz.smartstudy.sql.DatabaseHelper;
 import com.techwiz.smartstudy.validations.InputValidation;
@@ -22,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     DatabaseHelper databaseHelper;
     InputValidation inputValidation;
     User user;
+    SharedPreferenceHelper sharedPreferenceHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     private void initObjects() {
         inputValidation = new InputValidation(activity);
         databaseHelper = new DatabaseHelper(activity);
+        sharedPreferenceHelper = new SharedPreferenceHelper(activity);
         user = new User();
     }
 
@@ -73,8 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                             throw new IllegalStateException("Unexpected value: " + userDetails.getCategory());
                     }
 
-                    intent.putExtra("firstname", userDetails.getFirstname());
-                    intent.putExtra("lastname", userDetails.getLastname());
+                    sharedPreferenceHelper.updateUserLogin(userDetails.getFirstname(), userDetails.getLastname());
                     startActivity(intent);
                     finish();
                 } else {
