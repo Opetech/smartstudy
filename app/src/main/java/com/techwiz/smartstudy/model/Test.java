@@ -5,10 +5,6 @@ public class Test {
     private String name;
     private int isTaken;
 
-    public Test(String name) {
-        this.name = name;
-    }
-
     public int getId() {
         return id;
     }
@@ -25,7 +21,7 @@ public class Test {
         return isTaken;
     }
 
-    public void setIs_taken(int isTaken) {
+    public void setIsTaken(int isTaken) {
         this.isTaken = isTaken;
     }
 }

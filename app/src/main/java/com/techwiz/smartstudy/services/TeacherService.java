@@ -33,15 +33,6 @@ public class TeacherService extends DatabaseHelper {
 
     }
 
-    public void addTest(Test test) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("name", test.getName());
-        values.put("is_taken", test.getIsTaken());
-        db.insert(TABLE_TESTS, null, values);
-        db.close();
-    }
-
     public void updateScore(ScoreDetails scoreDetails) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -54,11 +45,11 @@ public class TeacherService extends DatabaseHelper {
         db.close();
     }
 
-    public void updateAcademicProgress(Test test) {
+    public void updateAcademicProgress(int testId, Test test) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("is_taken", test.getIsTaken());
-        db.update(TABLE_TESTS, values, "id" + " = " + test.getId(), null);
+        db.update(TABLE_TESTS, values, "id" + " = " + testId, null);
         db.close();
     }
 
@@ -66,7 +57,6 @@ public class TeacherService extends DatabaseHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("title", resources.getTitle());
-        values.put("type", resources.getType());
         values.put("link", resources.getLink());
         db.insert(TABLE_RESOURCES, null, values);
         db.close();

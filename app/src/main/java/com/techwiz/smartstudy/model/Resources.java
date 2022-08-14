@@ -2,12 +2,13 @@ package com.techwiz.smartstudy.model;
 
 public class Resources {
     private String title;
-    private String type;
     private String link;
 
-    public Resources(String title, String type, String link) {
+    public Resources() {
+    }
+
+    public Resources(String title, String link) {
         this.title = title;
-        this.type = type;
         this.link = link;
     }
 
@@ -17,14 +18,6 @@ public class Resources {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getLink() {

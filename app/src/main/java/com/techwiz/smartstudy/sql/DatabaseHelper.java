@@ -10,7 +10,7 @@ import com.techwiz.smartstudy.model.User;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     // Database Version
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
     // Database Name
     private static final String DATABASE_NAME = "SmartStudy.db";
     // User table name
@@ -52,7 +52,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Resources Table Columns names
     public static final String COLUMN_RESOURCE_TITLE = "title";
-    public static final String COLUMN_RESOURCE_TYPE = "type";
     public static final String COLUMN_RESOURCE_LINK = "link";
 
     // Score Details Table Columns names
@@ -84,7 +83,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String CREATE_RESOURCES_TABLE = "CREATE TABLE " + TABLE_RESOURCES + "("
             + COLUMN_PRIMARY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             COLUMN_RESOURCE_TITLE + " VARCHAR (255), " +
-            COLUMN_RESOURCE_TYPE + " VARCHAR (255), " +
             COLUMN_RESOURCE_LINK + " TEXT " + ")";
 
     // create test table sql query
@@ -106,6 +104,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COLUMN_SCORE_DATE + "TEXT" + COLUMN_SCORE_RECEIVED + " INTEGER, "
             + " FOREIGN KEY (" + COLUMN_SCORE_TEST_ID + ") REFERENCES " + TABLE_TESTS + "(" + COLUMN_PRIMARY_ID + "),"
             + " FOREIGN KEY (" + COLUMN_SCORE_USER_ID + ") REFERENCES " + TABLE_USER + "(" + COLUMN_PRIMARY_ID + ")" + ")";
+
+    //Seed tests table with data
+    private final String SEED_TESTS_TABLE = "INSERT INTO " + TABLE_TESTS + "(" + COLUMN_TEST_NAME + COLUMN_TEST_STATUS + ")" + "VALUES('English Language', 1), ('Computer Science', 1),('Mathematics', 0),('Biology', 1),('Chemistry', 0),('Project Management', 1),('Physics', 0)";
 
 
     // drop table sql query
@@ -135,6 +136,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TEST_TABLE);
         db.execSQL(CREATE_SCORE_DETAILS_TABLE);
         db.execSQL(CREATE_PARENT_STUDENT_TABLE);
+        db.execSQL(SEED_TESTS_TABLE);
     }
 
     @Override

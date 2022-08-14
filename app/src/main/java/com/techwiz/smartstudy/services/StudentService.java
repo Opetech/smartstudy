@@ -102,7 +102,6 @@ public class StudentService extends DatabaseHelper {
         HashMap<String, String> resources = new HashMap<>();
         String[] columns = {
                 COLUMN_RESOURCE_TITLE,
-                COLUMN_RESOURCE_TYPE,
                 COLUMN_RESOURCE_LINK
         };
 
@@ -118,7 +117,6 @@ public class StudentService extends DatabaseHelper {
         if (cursor.moveToFirst()) {
             do {
                 resources.put("title", cursor.getString(cursor.getColumnIndex(COLUMN_RESOURCE_TITLE)));
-                resources.put("type", cursor.getString(cursor.getColumnIndex(COLUMN_RESOURCE_TYPE)));
                 resources.put("link", cursor.getString(cursor.getColumnIndex(COLUMN_RESOURCE_LINK)));
             } while (cursor.moveToNext());
         }

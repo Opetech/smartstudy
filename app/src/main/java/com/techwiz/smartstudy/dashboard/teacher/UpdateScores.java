@@ -24,7 +24,6 @@ import java.util.List;
 
 public class UpdateScores extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private final AppCompatActivity activity = UpdateScores.this;
-    DatabaseHelper databaseHelper;
     TeacherService teacherService;
     SimpleDateFormat dateFormat;
     List<String> tests;
@@ -105,18 +104,18 @@ public class UpdateScores extends AppCompatActivity implements AdapterView.OnIte
         teacherService = new TeacherService(activity);
         dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         ScoreDetails scoreDetails = new ScoreDetails(selectedTest, selectedUser, scoreDescription.getText().toString(), dateFormat.format(new Date()), Integer.parseInt(score.getText().toString()));
+        teacherService.updateScore(scoreDetails);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String from;
-        if (parent.getSelectedView().getId() == R.id.testsDropdown) {
+        if (parent == testsDropdown) {
             selectedTest = testsId.get(parent.getSelectedItemPosition());
-        } else if(parent.getSelectedView().getId() == R.id.usersDropdown) {
+        } else if(parent == usersDropdown) {
             selectedUser = usersId.get(parent.getSelectedItemPosition());
         }
 
-        Log.println(Log.INFO, "Selected: ", "" + parent.getSelectedView().getId());
+        Log.println(Log.INFO, "Selected: ", "" + selectedTest);
         // Showing selected spinner item
         Toast.makeText(parent.getContext(), "Selected: " + view.getId(), Toast.LENGTH_LONG).show();
     }
