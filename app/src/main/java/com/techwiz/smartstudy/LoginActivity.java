@@ -76,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                     intent.putExtra("firstname", userDetails.getFirstname());
                     intent.putExtra("lastname", userDetails.getLastname());
                     startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Invalid Login Details", Toast.LENGTH_LONG).show();
                 }
