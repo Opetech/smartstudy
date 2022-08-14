@@ -23,18 +23,18 @@ public class SharedPreferenceHelper {
     }
 
     public String userFullName() {
-        HashMap<String, String> userDetails = new HashMap<>();
         String firstname = sharedPreferences.getString("firstname", "");
         String lastname = sharedPreferences.getString("lastname", "");
 
         return firstname + " " + lastname;
     }
 
-    public void updateUserLogin(String firstname, String lastname) {
+    public void updateUserLogin(String firstname, String lastname, String category) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("userIsLoggedIn", true);
         editor.putString("firstname", firstname);
         editor.putString("lastname", lastname);
+        editor.putString("category", category);
         editor.apply();
     }
 
@@ -42,5 +42,9 @@ public class SharedPreferenceHelper {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("userIsLoggedIn", false);
         editor.apply();
+    }
+
+    public String getUserCategory() {
+        return sharedPreferences.getString("category", "");
     }
 }

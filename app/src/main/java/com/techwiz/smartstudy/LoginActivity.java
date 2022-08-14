@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                             throw new IllegalStateException("Unexpected value: " + userDetails.getCategory());
                     }
 
-                    sharedPreferenceHelper.updateUserLogin(userDetails.getFirstname(), userDetails.getLastname());
+                    sharedPreferenceHelper.updateUserLogin(userDetails.getFirstname(), userDetails.getLastname(), userDetails.getCategory());
                     startActivity(intent);
                     finish();
                 } else {
