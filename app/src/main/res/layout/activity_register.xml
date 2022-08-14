@@ -24,7 +24,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/studyalert"/>
+                    android:src="@drawable/studyalert" />
 
             </FrameLayout>
 
@@ -60,7 +60,7 @@
                     android:layout_height="10.3dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="17dp"
-                    android:src="@drawable/user1"/>
+                    android:src="@drawable/user1" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -95,7 +95,7 @@
                     android:layout_height="10.3dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="17dp"
-                    android:src="@drawable/user1"/>
+                    android:src="@drawable/user1" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -130,7 +130,7 @@
                     android:layout_height="10.3dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="17dp"
-                    android:src="@drawable/email1"/>
+                    android:src="@drawable/email1" />
 
             </RelativeLayout>
 
@@ -166,7 +166,7 @@
                     android:layout_height="10.3dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="17dp"
-                    android:src="@drawable/phone1"/>
+                    android:src="@drawable/phone1" />
 
             </RelativeLayout>
 
@@ -202,45 +202,45 @@
                     android:layout_height="10.3dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="17dp"
-                    android:src="@drawable/password1"/>
+                    android:src="@drawable/password1" />
             </RelativeLayout>
 
-<!--            <RelativeLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_marginLeft="52dp"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:layout_marginRight="52dp"-->
-<!--                android:background="@drawable/blue_border_rounded_cornwe">-->
+            <!--            <RelativeLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:layout_marginLeft="52dp"-->
+            <!--                android:layout_marginTop="20dp"-->
+            <!--                android:layout_marginRight="52dp"-->
+            <!--                android:background="@drawable/blue_border_rounded_cornwe">-->
 
-<!--                <EditText-->
-<!--                    android:id="@+id/password2"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_toRightOf="@+id/password2_icon"-->
-<!--                    android:background="@android:color/transparent"-->
-<!--                    android:fontFamily="@font/poppins_regular"-->
-<!--                    android:hint="Confirm Password"-->
-<!--                    android:inputType="textPassword"-->
-<!--                    android:maxLength="15"-->
-<!--                    android:maxLines="1"-->
-<!--                    android:paddingLeft="17dp"-->
-<!--                    android:paddingTop="15dp"-->
-<!--                    android:paddingBottom="15dp"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textColorHint="@color/black"-->
-<!--                    android:textCursorDrawable="@drawable/cursor_color"-->
-<!--                    android:textSize="13sp" />-->
+            <!--                <EditText-->
+            <!--                    android:id="@+id/password2"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_toRightOf="@+id/password2_icon"-->
+            <!--                    android:background="@android:color/transparent"-->
+            <!--                    android:fontFamily="@font/poppins_regular"-->
+            <!--                    android:hint="Confirm Password"-->
+            <!--                    android:inputType="textPassword"-->
+            <!--                    android:maxLength="15"-->
+            <!--                    android:maxLines="1"-->
+            <!--                    android:paddingLeft="17dp"-->
+            <!--                    android:paddingTop="15dp"-->
+            <!--                    android:paddingBottom="15dp"-->
+            <!--                    android:textColor="@color/black"-->
+            <!--                    android:textColorHint="@color/black"-->
+            <!--                    android:textCursorDrawable="@drawable/cursor_color"-->
+            <!--                    android:textSize="13sp" />-->
 
-<!--                <ImageView-->
-<!--                    android:id="@+id/password2_icon"-->
-<!--                    android:layout_width="14.7dp"-->
-<!--                    android:layout_height="10.3dp"-->
-<!--                    android:layout_centerVertical="true"-->
-<!--                    android:layout_marginLeft="17dp"-->
-<!--                    android:src="@drawable/password1"/>-->
+            <!--                <ImageView-->
+            <!--                    android:id="@+id/password2_icon"-->
+            <!--                    android:layout_width="14.7dp"-->
+            <!--                    android:layout_height="10.3dp"-->
+            <!--                    android:layout_centerVertical="true"-->
+            <!--                    android:layout_marginLeft="17dp"-->
+            <!--                    android:src="@drawable/password1"/>-->
 
-<!--            </RelativeLayout>-->
+            <!--            </RelativeLayout>-->
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -276,32 +276,29 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="70dp"
                         android:buttonTint="@color/green1"
-                        android:text="Student"
-                        android:textColor="@color/green1"
+                        android:checked="true"
                         android:onClick="onRadioButtonClicked"
-                        />
+                        android:text="Student"
+                        android:textColor="@color/green1" />
 
                     <RadioButton
                         android:id="@+id/teacher"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="80dp"
                         android:buttonTint="@color/green1"
-                        android:text="Teacher"
-                        android:textColor="@color/green1"
                         android:onClick="onRadioButtonClicked"
-                        />
+                        android:text="Teacher"
+                        android:textColor="@color/green1" />
 
                     <RadioButton
                         android:id="@+id/parent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="80dp"
+
                         android:buttonTint="@color/green1"
-                        android:text="Parent"
-                        android:textColor="@color/green1"
                         android:onClick="onRadioButtonClicked"
-                        />
+                        android:text="Parent"
+                        android:textColor="@color/green1" />
                 </RadioGroup>
 
             </RelativeLayout>
@@ -322,7 +319,7 @@
                 android:paddingBottom="14dp"
                 android:text="Register"
                 android:textColor="#ffffff"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
         </LinearLayout>
 
     </ScrollView>

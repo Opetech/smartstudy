@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,10 +19,11 @@ import com.techwiz.smartstudy.validations.InputValidation;
 public class RegisterActivity extends AppCompatActivity{
     private final AppCompatActivity activity = RegisterActivity.this;
     EditText email, firstname, lastname, contact, password;
-    String category;
+    String category = "student";
     TextView signupSubmitBtn;
     DatabaseHelper databaseHelper;
     InputValidation inputValidation;
+    RadioGroup userCategoryRadioGroup;
     User user;
 
     @Override
@@ -42,6 +44,7 @@ public class RegisterActivity extends AppCompatActivity{
         contact = (EditText) findViewById(R.id.userPhone);
         password = (EditText) findViewById(R.id.password);
         signupSubmitBtn = (TextView) findViewById(R.id.register);
+        userCategoryRadioGroup = findViewById(R.id.userCategory);
     }
 
     private void initObjects() {
@@ -81,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity{
             contact.setError("Phone number is required");
         } else if (inputValidation.isEmpty(password)) {
             password.setError("Password is required");
-        } else {
+        } else{
             if (databaseHelper.checkEmailExist(email.getText().toString())) {
                 Toast.makeText(activity, "Email Already exist", Toast.LENGTH_LONG).show();
             } else {
@@ -92,6 +95,7 @@ public class RegisterActivity extends AppCompatActivity{
                     try {
                         Thread.sleep(1000);
                         startActivity(new Intent(this, LoginActivity.class));
+                        finish();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
