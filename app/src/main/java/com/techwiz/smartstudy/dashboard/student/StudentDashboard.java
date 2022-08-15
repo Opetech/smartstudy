@@ -46,9 +46,9 @@ public class StudentDashboard extends AppCompatActivity {
         viewStudyResources.setOnClickListener(view -> {
             startActivity(new Intent(activity, StudyResource.class));
         });
-        viewRevisions.setOnClickListener(view -> {
-            startActivity(new Intent(activity, StudyResource.class));
-        });
+//        viewRevisions.setOnClickListener(view -> {
+//            startActivity(new Intent(activity, StudyResource.class));
+//        });
         logout.setOnClickListener(view -> {
             sharedPreferenceHelper.updateUserLogout();
             startActivity(new Intent(activity, MainActivity.class));
