@@ -2,6 +2,7 @@ package com.techwiz.smartstudy.dashboard.teacher;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -9,23 +10,25 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.techwiz.smartstudy.R;
 import com.techwiz.smartstudy.model.Test;
 import com.techwiz.smartstudy.services.TeacherService;
+import com.techwiz.smartstudy.validations.InputValidation;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class UpdateAcademicProgress extends AppCompatActivity  implements AdapterView.OnItemSelectedListener{
+public class UpdateAcademicProgress extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private final AppCompatActivity activity = UpdateAcademicProgress.this;
     TeacherService teacherService;
     List<String> tests;
     List<Integer> testsId;
     Spinner testsDropdown;
     Button submitAcademicProgress;
-    int testStatus;
+    int testStatus = 1;
     int selectedTestId;
 
     @Override
@@ -33,6 +36,7 @@ public class UpdateAcademicProgress extends AppCompatActivity  implements Adapte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_academic_progress);
         initViewVariables();
+        initObjects();
         initListeners();
         createSelectDropdownMenu();
     }
@@ -40,6 +44,10 @@ public class UpdateAcademicProgress extends AppCompatActivity  implements Adapte
     private void initViewVariables() {
         testsDropdown = findViewById(R.id.testsDropdown);
         submitAcademicProgress = findViewById(R.id.submitAcademicProgress);
+    }
+
+    private void initObjects() {
+        teacherService = new TeacherService(activity);
     }
 
     private void initListeners() {
@@ -65,16 +73,13 @@ public class UpdateAcademicProgress extends AppCompatActivity  implements Adapte
     }
 
     private void createSelectDropdownMenu() {
-        // Tests Drop down elements
-        tests = new ArrayList<String>();
-        tests.add("Item 1");
-        tests.add("Item 2");
-        tests.add("Item 3");
-
+        //Fetch available tests
+        tests = teacherService.getAllTests();
+        //Assign ids for tests, to get selected test id from dropdown
         testsId = new ArrayList<>();
-        testsId.add(1);
-        testsId.add(2);
-        testsId.add(3);
+        for (int i = 1; i <= tests.size(); i++) {
+            testsId.add(i);
+        }
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tests);
@@ -87,10 +92,16 @@ public class UpdateAcademicProgress extends AppCompatActivity  implements Adapte
     }
 
     private void updateScore() {
-        teacherService = new TeacherService(activity);
-        Test test = new Test();
-        test.setIsTaken(testStatus);
-        teacherService.updateAcademicProgress(selectedTestId, test);
+        try {
+            Test test = new Test();
+            test.setIsTaken(testStatus);
+            teacherService.updateAcademicProgress(selectedTestId, test);
+            Toast.makeText(activity, "Progress Update Successful", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(activity, TeacherDashboard.class));
+        } catch (Exception e) {
+            Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
     }
 
 
