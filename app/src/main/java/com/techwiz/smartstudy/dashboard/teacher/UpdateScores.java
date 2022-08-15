@@ -17,6 +17,7 @@ import com.techwiz.smartstudy.R;
 import com.techwiz.smartstudy.model.ScoreDetails;
 import com.techwiz.smartstudy.services.TeacherService;
 import com.techwiz.smartstudy.sql.DatabaseHelper;
+import com.techwiz.smartstudy.validations.InputValidation;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class UpdateScores extends AppCompatActivity implements AdapterView.OnIte
     private final AppCompatActivity activity = UpdateScores.this;
     TeacherService teacherService;
     SimpleDateFormat dateFormat;
+    InputValidation inputValidation;
     List<String> tests;
     List<Integer> testsId;
     List<String> users;
@@ -56,7 +58,7 @@ public class UpdateScores extends AppCompatActivity implements AdapterView.OnIte
         //Assign ids for tests, to get selected test id from dropdown
         testsId = new ArrayList<>();
         for (int i = 1; i <= tests.size(); i++) {
-               testsId.add(i);
+            testsId.add(i);
         }
 
         //Fetch all users
@@ -96,14 +98,27 @@ public class UpdateScores extends AppCompatActivity implements AdapterView.OnIte
         });
     }
 
-    private void updateScore() {
+    private void initObjects() {
         teacherService = new TeacherService(activity);
-        dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        ScoreDetails scoreDetails = new ScoreDetails(selectedTest, selectedUser, scoreDescription.getText().toString(), dateFormat.format(new Date()), Integer.parseInt(score.getText().toString()));
-        teacherService.updateScore(scoreDetails);
-        Toast.makeText(activity, "Test Score Updated Successfully", Toast.LENGTH_LONG).show();
-        startActivity(new Intent(activity, TeacherDashboard.class));
-        finish();
+        inputValidation = new InputValidation(activity);
+    }
+
+    private void updateScore() {
+        try {
+            dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            int scoreInput = score.getText().toString().isEmpty() ? -1 : Integer.parseInt(score.getText().toString());
+            if (scoreInput > 100 || scoreInput < 0) {
+                score.setError("Score must be between 0 and 100");
+            } else {
+                ScoreDetails scoreDetails = new ScoreDetails(selectedTest, selectedUser, scoreDescription.getText().toString(), dateFormat.format(new Date()), Integer.parseInt(score.getText().toString()));
+                teacherService.updateScore(scoreDetails);
+                Toast.makeText(activity, "Test Score Updated Successfully", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(activity, TeacherDashboard.class));
+                finish();
+            }
+        } catch (Exception e) {
+            Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
