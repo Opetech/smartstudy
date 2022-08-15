@@ -7,12 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.techwiz.smartstudy.MainActivity;
 import com.techwiz.smartstudy.R;
 import com.techwiz.smartstudy.helper.SharedPreferenceHelper;
 
 public class TeacherDashboard extends AppCompatActivity {
     private final AppCompatActivity activity = TeacherDashboard.this;
-    private TextView username, welcomeMessage;
+    private TextView logout, welcomeMessage;
     private LinearLayoutCompat updateMarks, updateAcademicProgress, addStudyResource, addRevision;
     private SharedPreferenceHelper sharedPreferenceHelper;
     @Override
@@ -26,7 +27,7 @@ public class TeacherDashboard extends AppCompatActivity {
     }
 
     private void initializeViewVariables() {
-        username = (TextView) findViewById(R.id.username);
+        logout = (TextView) findViewById(R.id.logout);
         welcomeMessage = (TextView) findViewById(R.id.welcomeMessage);
         updateMarks = findViewById(R.id.updateMarks);
         updateAcademicProgress = findViewById(R.id.updateAcademicProgress);
@@ -46,6 +47,11 @@ public class TeacherDashboard extends AppCompatActivity {
         });
         addRevision.setOnClickListener(view -> {
             startActivity(new Intent(activity, AddRevisionActivity.class));
+        });
+        logout.setOnClickListener(view -> {
+            sharedPreferenceHelper.updateUserLogout();
+            startActivity(new Intent(activity, MainActivity.class));
+            finish();
         });
     }
 

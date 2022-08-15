@@ -13,14 +13,14 @@
         android:layout_height="50dp"
         android:background="@color/bg_color">
         <TextView
-            android:id="@+id/username"
+            android:id="@+id/logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="12dp"
             android:layout_marginRight="18dp"
             android:layout_marginBottom="10dp"
-            android:text="Username display"
+            android:text="Logout"
             android:textColor="@color/white"
             android:textSize="18dp"
             android:textStyle="bold" />

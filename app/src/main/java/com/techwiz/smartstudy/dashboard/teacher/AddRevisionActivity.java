@@ -34,6 +34,7 @@ public class AddRevisionActivity extends AppCompatActivity {
         revisionName = findViewById(R.id.revisionName);
         revisionDate = findViewById(R.id.revisionDate);
         revisionTime = findViewById(R.id.revisionTime);
+        submitRevision = findViewById(R.id.submitRevision);
     }
 
     private void addRevision() {
@@ -48,7 +49,7 @@ public class AddRevisionActivity extends AppCompatActivity {
             } else {
                 Revision revision = new Revision(revisionName.getText().toString(), revisionDate.getText().toString(), revisionTime.getText().toString());
                 teacherService.addRevisionClasses(revision);
-                Toast.makeText(activity, "Resource Added Successfully", Toast.LENGTH_LONG).show();
+                Toast.makeText(activity, "Revision Added Successfully", Toast.LENGTH_LONG).show();
             }
         } catch (Exception e) {
             Toast.makeText(activity, "Something went wrong", Toast.LENGTH_LONG).show();
