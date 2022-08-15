@@ -43,6 +43,11 @@ public class InputValidation {
         return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
     }
 
+    public boolean isValidUrl(EditText text) {
+        CharSequence url = text.getText().toString();
+        return !TextUtils.isEmpty(url) && Patterns.WEB_URL.matcher(url).matches();
+    }
+
     /**
      * method to Hide keyboard
      *

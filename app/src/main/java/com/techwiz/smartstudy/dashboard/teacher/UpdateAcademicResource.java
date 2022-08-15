@@ -2,6 +2,7 @@ package com.techwiz.smartstudy.dashboard.teacher;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,8 +10,11 @@ import android.widget.Toast;
 
 import com.techwiz.smartstudy.LoginActivity;
 import com.techwiz.smartstudy.R;
+import com.techwiz.smartstudy.helper.SharedPreferenceHelper;
 import com.techwiz.smartstudy.model.Resources;
+import com.techwiz.smartstudy.model.User;
 import com.techwiz.smartstudy.services.TeacherService;
+import com.techwiz.smartstudy.sql.DatabaseHelper;
 import com.techwiz.smartstudy.validations.InputValidation;
 
 public class UpdateAcademicResource extends AppCompatActivity {
@@ -26,6 +30,7 @@ public class UpdateAcademicResource extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_academic_resource);
         initViewVariables();
+        initObjects();
         submitResource.setOnClickListener(view -> {
             addResource();
         });
@@ -34,6 +39,11 @@ public class UpdateAcademicResource extends AppCompatActivity {
     private void initViewVariables() {
         resourceTitle = findViewById(R.id.resourceTitle);
         resourceLink = findViewById(R.id.resourceLink);
+        submitResource = findViewById(R.id.submitResource);
+    }
+
+    private void initObjects() {
+        inputValidation = new InputValidation(activity);
     }
 
     private void addResource() {
@@ -41,15 +51,16 @@ public class UpdateAcademicResource extends AppCompatActivity {
             teacherService = new TeacherService(activity);
             if (inputValidation.isEmpty(resourceTitle)) {
                 resourceTitle.setError("Title cannot be empty");
-            } else if (inputValidation.isEmpty(resourceLink)) {
-                resourceLink.setError("Link cannot be empty");
+            } else if (!inputValidation.isValidUrl(resourceLink)) {
+                resourceLink.setError("Valid URL must be provided");
             } else {
                 Resources academicResources = new Resources(resourceTitle.getText().toString(), resourceLink.getText().toString());
                 teacherService.addStudyResources(academicResources);
                 Toast.makeText(activity, "Resource Added Successfully", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(activity, TeacherDashboard.class));
             }
         } catch (Exception e) {
-            Toast.makeText(activity, "Something went wrong", Toast.LENGTH_LONG).show();
+            Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
