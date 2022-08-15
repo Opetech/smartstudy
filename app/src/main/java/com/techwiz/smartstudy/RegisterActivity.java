@@ -89,7 +89,7 @@ public class RegisterActivity extends AppCompatActivity{
                 Toast.makeText(activity, "Email Already exist", Toast.LENGTH_LONG).show();
             } else {
                 try {
-                    user = new User(firstname.getText().toString(), lastname.getText().toString(), contact.getText().toString(), email.getText().toString(), password.getText().toString(), category);
+                    user = new User(firstname.getText().toString(), lastname.getText().toString(), contact.getText().toString(), email.getText().toString().trim(), password.getText().toString(), category);
                     databaseHelper.addUser(user);
                     Toast.makeText(activity, "Information saved successfully", Toast.LENGTH_SHORT).show();
                     try {

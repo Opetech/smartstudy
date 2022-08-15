@@ -20,7 +20,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:src="@drawable/studyalert" />
+                android:src="@drawable/smart_study1" />
         </FrameLayout>
 
         <RelativeLayout

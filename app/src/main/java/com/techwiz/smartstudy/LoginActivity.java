@@ -19,7 +19,7 @@ import com.techwiz.smartstudy.validations.InputValidation;
 public class LoginActivity extends AppCompatActivity {
     private final AppCompatActivity activity = LoginActivity.this;
     EditText email, password;
-    TextView login;
+    TextView login, register;
     DatabaseHelper databaseHelper;
     InputValidation inputValidation;
     User user;
@@ -35,12 +35,16 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(view -> {
             handleLoginAction();
         });
+        register.setOnClickListener(view -> {
+            startActivity(new Intent(activity, RegisterActivity.class));
+        });
     }
 
     private void initViewVariables() {
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         login = (TextView) findViewById(R.id.login);
+        register = (TextView) findViewById(R.id.register);
     }
 
     private void initObjects() {

@@ -16,23 +16,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="5dp">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/studyalert" />
-
-            </FrameLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="52dp"
-                android:layout_marginTop="20.7dp"
+                android:layout_marginTop="70.7dp"
                 android:layout_marginRight="52dp"
                 android:background="@drawable/blue_border_rounded_cornwe">
 
