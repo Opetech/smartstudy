@@ -60,7 +60,7 @@ public class UpdateAcademicResource extends AppCompatActivity {
                 startActivity(new Intent(activity, TeacherDashboard.class));
             }
         } catch (Exception e) {
-            Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(activity, "Something went wrong", Toast.LENGTH_LONG).show();
         }
     }
 
